@@ -9,14 +9,16 @@ export const Hello = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <View style={styles.content}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Create')}
+        style={styles.content}>
         <Text style={styles.txtContent}>{'Movie'}</Text>
         <Image
           source={IC_Play}
           style={styles.imgContent}
           resizeMode="contain"
         />
-      </View>
+      </TouchableOpacity>
 
       <TouchableOpacity
         onPress={() => navigation.navigate('Create')}

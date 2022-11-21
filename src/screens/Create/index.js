@@ -12,6 +12,7 @@ import {IC_BACK, IC_APPLE, IC_GOOGLE} from '../../assets';
 import {Tip} from '../../component';
 
 import LinearGradient from 'react-native-linear-gradient';
+import {useNavigation} from '@react-navigation/native';
 
 const Item = [
   {
@@ -33,12 +34,15 @@ const renderItem = ({item, index}) => {
 };
 
 export const Create = placeHolder => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <View style={styles.title}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Hello')}
+        style={styles.title}>
         <Image source={IC_BACK} style={styles.icBack} resizeMode="contain" />
         <Text style={styles.txtSignUp}>{'Sign Up'}</Text>
-      </View>
+      </TouchableOpacity>
       <Text style={styles.txtHi}>
         {'Sign up with one of following options'}
       </Text>
@@ -161,8 +165,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     alignSelf: 'center',
     marginBottom: normalize(60),
-    fontWeight: '700',
+    fontWeight: '400',
     fontSize: normalize(18),
+    lineHeight: normalize(22),
   },
   txtLogin: {
     color: colors.TEXT,
