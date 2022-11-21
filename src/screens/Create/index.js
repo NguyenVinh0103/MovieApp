@@ -13,7 +13,7 @@ import {Tip} from '../../component';
 
 import LinearGradient from 'react-native-linear-gradient';
 import {useNavigation} from '@react-navigation/native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview'
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 const Item = [
   {
@@ -34,11 +34,11 @@ const renderItem = ({item, index}) => {
   );
 };
 
-export const Create = placeHolder => {
+export const Create = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <KeyboardAwareScrollView extraHeight="handled">
+      <KeyboardAwareScrollView extraScrollHeight={100}>
         <TouchableOpacity
           onPress={() => navigation.navigate('Hello')}
           style={styles.title}>
@@ -56,12 +56,19 @@ export const Create = placeHolder => {
             contentContainerStyle={styles.flatList}
           />
         </View>
-        <Text style={styles.txtTitle}>{'Name'}</Text>
-        <Tip />
-        <Text style={styles.txtTitle}>{'Email'}</Text>
-        <Tip />
-        <Text style={styles.txtTitle}>{'Password'}</Text>
-        <Tip placeHolder="enter your password" />
+        <View>
+          <Text style={styles.txtTitle}>{'Name'}</Text>
+          <Tip />
+        </View>
+        <View>
+          <Text style={styles.txtTitle}>{'Email'}</Text>
+          <Tip />
+        </View>
+
+        <View>
+          <Text style={styles.txtTitle}>{'Password'}</Text>
+          <Tip placeHolder="enter your password" />
+        </View>
         <TouchableOpacity
           onPress={() => navigation.navigate('Login')}
           style={styles.btnStart}>
