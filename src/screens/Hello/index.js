@@ -26,7 +26,7 @@ export const Hello = () => {
         <LinearGradient
           start={{x: 0.0, y: 0.25}}
           end={{x: 0.5, y: 1.0}}
-          colors={['rgba(255, 114, 42, 0.5)', '#FF722A']}
+          colors={['rgba(255, 114, 42, 0.5)', '#rgba(255, 114, 42, 1)']}
           style={styles.linearGradient}>
           <Text style={styles.txtSignIn}>{'Get started'}</Text>
         </LinearGradient>

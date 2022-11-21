@@ -26,5 +26,6 @@ const styles = StyleSheet.create({
     marginTop: normalize(16),
     borderRadius: normalize(12),
     paddingLeft: normalizeHorizontal(20),
+    color: colors.TEXT
   },
 });

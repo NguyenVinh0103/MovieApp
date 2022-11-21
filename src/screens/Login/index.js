@@ -60,7 +60,7 @@ export const Login = () => {
         <LinearGradient
           start={{x: 0.0, y: 0.25}}
           end={{x: 0.5, y: 1.0}}
-          colors={['rgba(255, 114, 42, 0.5)', '#FF722A']}
+          colors={['rgba(255, 114, 42, 0.5)', 'rgba(255, 114, 42, 1)']}
           style={styles.linearGradient}>
           <Text style={styles.txtSignIn}>{'Login'}</Text>
         </LinearGradient>
@@ -140,8 +140,8 @@ const styles = StyleSheet.create({
     width: '90%',
     height: normalize(50),
     bottom: 0,
-    marginBottom: normalize(120),
-    position: 'absolute',
+    marginTop: normalize(140),
+    position: 'relative',
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
@@ -155,10 +155,10 @@ const styles = StyleSheet.create({
   },
   txtBottom: {
     color: '#9C9C9C',
-    position: 'absolute',
+    position: 'relative',
     bottom: 0,
     alignSelf: 'center',
-    marginBottom: normalize(60),
+    marginTop: normalize(40),
     fontWeight: '400',
     fontSize: normalize(18),
     lineHeight: normalize(22),

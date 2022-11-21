@@ -13,6 +13,7 @@ import {Tip} from '../../component';
 
 import LinearGradient from 'react-native-linear-gradient';
 import {useNavigation} from '@react-navigation/native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview'
 
 const Item = [
   {
@@ -37,44 +38,46 @@ export const Create = placeHolder => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Hello')}
-        style={styles.title}>
-        <Image source={IC_BACK} style={styles.icBack} resizeMode="contain" />
-        <Text style={styles.txtSignUp}>{'Sign Up'}</Text>
-      </TouchableOpacity>
-      <Text style={styles.txtHi}>
-        {'Sign up with one of following options'}
-      </Text>
-      <View>
-        <FlatList
-          data={Item}
-          renderItem={renderItem}
-          keyExtractor={(item, index) => `${item?.id} ${item?.index}`}
-          contentContainerStyle={styles.flatList}
-        />
-      </View>
-      <Text style={styles.txtTitle}>{'Name'}</Text>
-      <Tip />
-      <Text style={styles.txtTitle}>{'Email'}</Text>
-      <Tip />
-      <Text style={styles.txtTitle}>{'Password'}</Text>
-      <Tip placeHolder="enter your password" />
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Login')}
-        style={styles.btnStart}>
-        <LinearGradient
-          start={{x: 0.0, y: 0.25}}
-          end={{x: 0.5, y: 1.0}}
-          colors={['rgba(255, 114, 42, 0.5)', '#FF722A']}
-          style={styles.linearGradient}>
-          <Text style={styles.txtSignIn}>{'Create Account'}</Text>
-        </LinearGradient>
-      </TouchableOpacity>
-      <Text style={styles.txtBottom}>
-        {'Already have an account? '}
-        <Text style={styles.txtLogin}>{'Login'}</Text>
-      </Text>
+      <KeyboardAwareScrollView extraHeight="handled">
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Hello')}
+          style={styles.title}>
+          <Image source={IC_BACK} style={styles.icBack} resizeMode="contain" />
+          <Text style={styles.txtSignUp}>{'Sign Up'}</Text>
+        </TouchableOpacity>
+        <Text style={styles.txtHi}>
+          {'Sign up with one of following options'}
+        </Text>
+        <View>
+          <FlatList
+            data={Item}
+            renderItem={renderItem}
+            keyExtractor={(item, index) => `${item?.id} ${item?.index}`}
+            contentContainerStyle={styles.flatList}
+          />
+        </View>
+        <Text style={styles.txtTitle}>{'Name'}</Text>
+        <Tip />
+        <Text style={styles.txtTitle}>{'Email'}</Text>
+        <Tip />
+        <Text style={styles.txtTitle}>{'Password'}</Text>
+        <Tip placeHolder="enter your password" />
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Login')}
+          style={styles.btnStart}>
+          <LinearGradient
+            start={{x: 0.0, y: 0.25}}
+            end={{x: 0.5, y: 1.0}}
+            colors={['rgba(255, 114, 42, 0.5)', 'rgba(255, 114, 42, 1)']}
+            style={styles.linearGradient}>
+            <Text style={styles.txtSignIn}>{'Create Account'}</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+        <Text style={styles.txtBottom}>
+          {'Already have an account? '}
+          <Text style={styles.txtLogin}>{'Login'}</Text>
+        </Text>
+      </KeyboardAwareScrollView>
     </View>
   );
 };
@@ -146,11 +149,11 @@ const styles = StyleSheet.create({
     width: '90%',
     height: normalize(50),
     bottom: 0,
-    marginBottom: normalize(120),
-    position: 'absolute',
+    position: 'relative',
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
+    marginTop: normalize(50),
   },
   txtSignIn: {
     color: colors.TEXT,
@@ -161,10 +164,10 @@ const styles = StyleSheet.create({
   },
   txtBottom: {
     color: '#9C9C9C',
-    position: 'absolute',
+    position: 'relative',
     bottom: 0,
     alignSelf: 'center',
-    marginBottom: normalize(60),
+    marginTop: normalize(40),
     fontWeight: '400',
     fontSize: normalize(18),
     lineHeight: normalize(22),
