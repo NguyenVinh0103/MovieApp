@@ -31,10 +31,9 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   image: {
-   width: normalize(400),
+   height: normalize(220),
    alignSelf:'center',
    marginTop: normalize(20),
    aspectRatio: 2,
-
   },
 });

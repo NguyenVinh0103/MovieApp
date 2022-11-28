@@ -25,7 +25,7 @@ export default Paginator = ({data, scrollX}) => {
         const opacity = scrollX.interpolate({
           inputRange,
           outputRange: [0.3, 1, 0.3],
-          extrapolate: 'clamp',
+          extrapolate: 'clamp'
         });
 
         return (
@@ -42,7 +42,7 @@ export default Paginator = ({data, scrollX}) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    height: normalize(64),
+    height: normalize(32),
     justifyContent: 'center',
     marginTop: normalize(20),
   },

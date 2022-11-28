@@ -9,4 +9,16 @@ export default [
     id: 2,
     image: IMG_RATED,
   },
+  {
+    id: 3,
+    image: IMG_NETFLIX,
+  },
+  {
+    id: 4,
+    image: IMG_RATED,
+  },
+  {
+    id: 5,
+    image: IMG_NETFLIX,
+  },
 ];
