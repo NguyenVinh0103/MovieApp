@@ -80,10 +80,13 @@ export const Create = () => {
             <Text style={styles.txtSignIn}>{'Create Account'}</Text>
           </LinearGradient>
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Login') }>
         <Text style={styles.txtBottom}>
           {'Already have an account? '}
           <Text style={styles.txtLogin}>{'Login'}</Text>
         </Text>
+        </TouchableOpacity>
+        
       </KeyboardAwareScrollView>
     </View>
   );

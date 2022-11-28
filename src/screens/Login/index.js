@@ -56,7 +56,7 @@ export const Login = () => {
       <Tip />
       <Text style={styles.txtTitle}>{'Password'}</Text>
       <Tip placeHolder="enter your password" />
-      <TouchableOpacity style={styles.btnStart}>
+      <TouchableOpacity onPress={() => navigation.navigate('Interesting')} style={styles.btnStart}>
         <LinearGradient
           start={{x: 0.0, y: 0.25}}
           end={{x: 0.5, y: 1.0}}
@@ -65,10 +65,12 @@ export const Login = () => {
           <Text style={styles.txtSignIn}>{'Login'}</Text>
         </LinearGradient>
       </TouchableOpacity>
-      <Text style={styles.txtBottom}>
-        {'Don’t have an account? '}
-        <Text style={styles.txtLogin}>{'Sign Up'}</Text>
-      </Text>
+      <TouchableOpacity onPress={() => navigation.navigate('Create')}>
+        <Text style={styles.txtBottom}>
+          {'Don’t have an account? '}
+          <Text style={styles.txtLogin}>{'Sign Up'}</Text>
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };

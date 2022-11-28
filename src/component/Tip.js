@@ -3,12 +3,16 @@ import React from 'react';
 import {colors, normalize, normalizeHorizontal} from '../helper';
 import {TextInput} from 'react-native-gesture-handler';
 
-const TipComp = () => {
+const TipComp = ({
+  placeholder = '',
+  style = {},
+  placeholderTextColor = ''
+}) => {
   return (
     <View style={styles.container}>
       <TextInput
         style={styles.tip}
-        placeholder="Enter your name"
+        placeholder='Enter your name'
         placeholderTextColor={'#9C9C9C'}
       />
     </View>
