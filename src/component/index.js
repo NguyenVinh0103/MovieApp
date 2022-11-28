@@ -1,2 +1,2 @@
-export * from './Tip'
-export * from './Onboarding'
+export * from './Tip';
+export * from './Onboarding';

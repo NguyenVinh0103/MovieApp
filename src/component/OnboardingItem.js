@@ -28,12 +28,12 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: normalize(20),
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   image: {
-   height: normalize(220),
-   alignSelf:'center',
-   marginTop: normalize(20),
-   aspectRatio: 2,
+    height: normalize(220),
+    alignSelf: 'center',
+    marginTop: normalize(20),
+    aspectRatio: 2,
   },
 });

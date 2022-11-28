@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
   content: {
     flexDirection: 'row',
     alignItems: 'center',
-    // justifyContent: 'center',
   },
   txtContent: {
     color: colors.TEXT,

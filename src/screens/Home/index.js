@@ -19,8 +19,6 @@ import {
   IMG_NEW2,
   IMG_NEW3,
 } from '../../assets';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import LinearGradient from 'react-native-linear-gradient';
 import {useNavigation} from '@react-navigation/native';
 import {Onboarding} from '../../component';
 
@@ -82,6 +80,7 @@ const renderItem2 = ({item, index}) => {
 };
 
 export const Home = () => {
+  const navigation = useNavigation();
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -92,7 +91,9 @@ export const Home = () => {
             placeholderTextColor="#fff"
           />
           <View style={styles.icTIP}>
-            <TouchableOpacity style={styles.Search}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Interesting')}
+              style={styles.Search}>
               <Image
                 source={IC_BACK}
                 style={styles.icSearch}
