@@ -56,7 +56,9 @@ export const Login = () => {
       <Tip />
       <Text style={styles.txtTitle}>{'Password'}</Text>
       <Tip placeHolder="enter your password" />
-      <TouchableOpacity onPress={() => navigation.navigate('Interesting')} style={styles.btnStart}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Interesting')}
+        style={styles.btnStart}>
         <LinearGradient
           start={{x: 0.0, y: 0.25}}
           end={{x: 0.5, y: 1.0}}

@@ -23,15 +23,15 @@ export const RootNavigation = () => {
           component={Create}
           options={{headerShown: false}}
         />
-        <Stack.Screen 
-        name= "Home"
-        component={Home}
-        options ={{headerShown : false}}
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{headerShown: false}}
         />
-        <Stack.Screen 
-        name= "Interesting"
-        component={Interesting}
-        options ={{headerShown : false}}
+        <Stack.Screen
+          name="Interesting"
+          component={Interesting}
+          options={{headerShown: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>
