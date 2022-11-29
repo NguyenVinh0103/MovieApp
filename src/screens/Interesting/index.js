@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import {colors, normalize, normalizeHorizontal, width} from '../../helper';
 import {
   IC_BACK,
@@ -54,25 +54,25 @@ const Item2 = [
   {
     id: 1,
     images: IMG_ITEM1,
-    text2: 'Tom Cruise',
+    name2: 'Tom Cruise',
   },
 
   {
     id: 2,
     images: IMG_ITEM2,
-    text2: 'Robert Downey',
+    name2: 'Robert Downey',
   },
 
   {
     id: 3,
     images: IMG_ITEM3,
-    text2: 'Emma Stone',
+    name2: 'Emma Stone',
   },
 
   {
     id: 4,
     images: IMG_ITEM4,
-    text2: 'Ryan Reynolds',
+    name2: 'Ryan Reynolds',
   },
 ];
 
@@ -100,7 +100,7 @@ const renderItem2 = ({item, index}) => {
           resizeMode="contain"
           style={styles.imgItem}
         />
-        <Text style={styles.txtItem2}>{item?.text2}</Text>
+        <Text style={styles.txtItem2}>{item?.name2}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -109,6 +109,8 @@ const renderItem2 = ({item, index}) => {
 export const Interesting = () => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
+  const [search, setSearch] = useState('')
+  
   return (
     <View style={styles.container}>
       <Image source={IC_BACK} style={styles.icBack} resizeMode="contain" />
@@ -123,6 +125,10 @@ export const Interesting = () => {
           style={styles.tipSearch}
           placeholder="Search"
           placeholderTextColor="#fff"
+          onChangeText={(text) => {
+            setSearch(text)
+            console.log('hihi')
+          }}
         />
         <View style={styles.icTIP}>
           <TouchableOpacity style={styles.Search}>
@@ -155,7 +161,9 @@ export const Interesting = () => {
       <Text style={styles.txtActors}> {'Poupular actors'}</Text>
       <View>
         <FlatList
-          data={Item2}
+          data={Item2.filter(Item2 =>
+            Item2.name2.toLowerCase().includes(search.toLowerCase()),            
+          )}
           keyExtractor={(item, index) => `${item?.id} ${item?.index}`}
           renderItem={renderItem2}
           contentContainerStyle={styles.FlatList2}
@@ -318,11 +326,9 @@ const styles = StyleSheet.create({
   next: {
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'absolute',
-    right: 0,
-    bottom: 0,
-    marginBottom: normalize(60),
-    marginRight: normalizeHorizontal(40),
+    position: 'relative',
+    marginLeft: normalizeHorizontal(250),
+    marginTop: normalize(40),
     width: normalize(80),
     aspectRatio: 1,
     borderRadius: normalize(100) / 2,

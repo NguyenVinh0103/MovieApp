@@ -8,7 +8,8 @@ import {
   FlatList,
   ScrollView,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {colors, normalize, normalizeHorizontal, width} from '../../helper';
 import {
   IC_BACK,
@@ -26,12 +27,12 @@ const Item = [
   {
     id: 1,
     image: IMG_PRODUCT1,
-    text: 'Squid game',
+    name: 'Squid game',
   },
   {
     id: 2,
     image: IMG_PRODUCT2,
-    text: 'The marksman',
+    name: 'The marksman',
   },
 ];
 
@@ -39,17 +40,17 @@ const Item2 = [
   {
     id: 1,
     image2: IMG_NEW1,
-    text2: 'Black widow',
+    name2: 'Black widow',
   },
   {
     id: 2,
     image2: IMG_NEW2,
-    text2: 'Without remorse',
+    name2: 'Without remorse',
   },
   {
     id: 3,
     image2: IMG_NEW3,
-    text2: 'The misfits',
+    name2: 'The misfits',
   },
 ];
 
@@ -61,7 +62,7 @@ const renderItem = ({item, index}) => {
         resizeMode="contain"
         style={styles.imgProduct}
       />
-      <Text style={styles.txtProduct}>{item.text}</Text>
+      <Text style={styles.txtProduct}>{item.name}</Text>
     </TouchableOpacity>
   );
 };
@@ -74,20 +75,25 @@ const renderItem2 = ({item, index}) => {
         resizeMode="contain"
         style={styles.imgProduct2}
       />
-      <Text style={styles.txtProduct2}>{item?.text2}</Text>
+      <Text style={styles.txtProduct2}>{item?.name2}</Text>
     </TouchableOpacity>
   );
 };
 
 export const Home = () => {
+  const [search, setSearch] = useState('');
+
   const navigation = useNavigation();
   return (
-    <ScrollView>
+    <KeyboardAwareScrollView
+      enableAutomaticScroll={true}
+      contentContainerStyle={styles.scrollView}>
       <View style={styles.container}>
         <View style={styles.search}>
           <TextInput
             style={styles.tipSearch}
             placeholder="Search in the app"
+            onChangeText={text => setSearch(text)}
             placeholderTextColor="#fff"
           />
           <View style={styles.icTIP}>
@@ -113,7 +119,9 @@ export const Home = () => {
         <Text style={styles.txtMostPopular}>{'Most Popular'}</Text>
         <View>
           <FlatList
-            data={Item}
+            data={Item.filter(Item =>
+              Item.name.toLowerCase().includes(search.toLowerCase()),
+            )}
             contentContainerStyle={styles.FlatList}
             keyExtractor={(item, index) => `${item?.id} ${item?.index}`}
             renderItem={renderItem}
@@ -122,20 +130,25 @@ export const Home = () => {
         <Text style={styles.txtNew}>{'New'}</Text>
         <View>
           <FlatList
-            data={Item2}
+            data={Item2.filter(Item2 =>
+              Item2.name2.toLowerCase().includes(search.toLowerCase()),
+            )}
             contentContainerStyle={styles.FlatList2}
             keyExtractor={(item, index) => `${item?.id} ${item?.index}`}
             renderItem={renderItem2}
           />
         </View>
       </View>
-    </ScrollView>
+    </KeyboardAwareScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  scrollView: {
+    height: '150%',
+  },
   container: {
-    flex: 1,
+    height: '100%',
     backgroundColor: colors.BACKGROUND,
   },
   search: {
