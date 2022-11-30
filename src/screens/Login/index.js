@@ -12,12 +12,12 @@ import React, {useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {useNavigation} from '@react-navigation/native';
 
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {loginHook} from './hook';
 import {colors, normalize, normalizeHorizontal} from '../../helper';
 import {IC_BACK, IC_APPLE, IC_GOOGLE, IC_SHOWPASS} from '../../assets';
 import {Tip} from '../../component';
-import { authAction } from '../../redux/action';
+import { authAction, getUserAction } from '../../redux/action';
 const Item = [
   {
     id: 1,
@@ -44,23 +44,27 @@ export const Login = () => {
   const [username, setUsername] = useState('eve.holt@reqres.in');
   const [password, setPassword] = useState('cityslicka');
   const [isShowPassWord, setIsShowPassword] = useState(false)
-
+  const getUserReducer = useSelector(state => state.getUser.listUser)
+  console.log(getUserReducer, "reducer")
   const showPassword = () => {
     setIsShowPassword(!isShowPassWord)
   }
 
+
   const onLogin = async () => {
+    
 		setIsLoading(true);
 		const params = {
 			username: username,
 			password: password,
 		}
-		const response = await authAction.onLogin(params, dispatch)
-		const { statusCode, data } = response
-		if (data != "") {
-			navigation.navigate('Home')
-      console.log('login success')
-		}
+		const response = await getUserAction.onGetUser(params, dispatch)
+    console.log(response, 'response saga') //abc
+		// const { statusCode, data } = response
+		// if (data != "") {
+		// 	navigation.navigate('Home')
+    //   console.log('login success')
+		// }
 		setIsLoading(false);
 	}
   return (

@@ -5,3 +5,4 @@
 //     UtilsTypes
 // };
 export * from './authTypes'
+export * from './getUserTypes'
