@@ -32,6 +32,7 @@ export function* doLogin(action: LoginSagaTypes): any {
             // cityslicka
         }
         yield delay(300)
+        console.log('tui la vinh ne')
         resolve({ statusCode: code, data: token });
     } catch (e) {
         console.log(e);

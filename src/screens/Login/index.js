@@ -50,24 +50,26 @@ export const Login = () => {
   }
 
   const onLogin = async () => {
-    setIsLoading(true);
-    const params = {
-      username: 'vinh17528@gmail.com',
-      password: '12345678',
-    };
-    const response = await authAction.onLogin(params, dispatch);
-    setTimeout(() => {
-      navigation.navigate('Home');
-    }, 600);
-    setIsLoading(false);
-  };
+		setIsLoading(dispatch, true);
+		const params = {
+			username: username,
+			password: password,
+		}
+		const response = await authAction.onLogin(params, dispatch)
+		const { statusCode, data } = response
+		if (data != "") {
+			navigation.navigate('Home')
+      console.log('login success')
+		}
+		setIsLoading(dispatch, false);
+	}
   return (
     <View style={styles.container}>
       <TouchableOpacity
         onPress={() => navigation.navigate('Create')}
         style={styles.title}>
         <Image source={IC_BACK} style={styles.icBack} resizeMode="contain" />
-        <Text style={styles.txtSignUp}>{'Sign Up'}</Text>
+        <Text style={styles.txtSignUp}>{'Sign In'}</Text>
       </TouchableOpacity>
       <Text style={styles.txtHi}>{'Login with one of following options'}</Text>
       <View>
