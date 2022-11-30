@@ -14,10 +14,3 @@ export interface RegisterSagaTypes extends Action {
     resolve: (respone: any) => {}, /// define respone
     reject: (respone: any) => {}
 }
-
-export interface GetListUserSagaTypes extends Action {
-    params: any,
-    type: string,
-    resolve: (respone: any) => {}, /// define respone
-    reject: (respone: any) => {}
-}

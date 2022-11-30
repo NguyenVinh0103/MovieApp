@@ -21,14 +21,3 @@ export function onLogin(params: LoginInterface, dispatch: Dispatch) {
         });
     });
 }
-
-export function onGetListUser(params: any, dispatch: Dispatch) {
-    return new Promise((resolve, reject) => {
-        dispatch({
-            type: authTypes.GET_LIST_USER,
-            params,
-            resolve,
-            reject,
-        });
-    });
-}
