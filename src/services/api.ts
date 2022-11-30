@@ -1,5 +1,5 @@
+import rootStore from '@/reduxUtil/store';
 import Axios from 'axios';
-import { Store } from '../../redux';
 import { ApiMonitorFail, ApiMonitorSuccess } from './Monitor';
 
 export const API_END_POINT = 'https://reqres.in/';
@@ -15,7 +15,7 @@ export const api = Axios.create({
 api.interceptors.request.use(
     (config: any) => {
         // Do something before request is sent
-        const token = Store.getState().auth?.accessToken || '';
+        const token = rootStore.getState().auth?.accessToken || '';
         config.headers['Authorization'] = token ? `Bearer ${token}` : '';
         return config;
     },

@@ -38,6 +38,7 @@ export const ApiMonitorSuccess = (response: ResponseType) => {
 };
 
 export const ApiMonitorFail = (error: ErrorType) => {
+    console.log(error)
     const { status, data } = error?.response
     console.log(
         '%c API_RESPONSE_FAIL LINK: %c' + error?.config?.url,
