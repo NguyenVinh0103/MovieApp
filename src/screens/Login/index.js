@@ -5,7 +5,7 @@ import {
   FlatList,
   Image,
   TouchableOpacity,
-  TextInput
+  TextInput,
 } from 'react-native';
 import React, {useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
@@ -15,7 +15,7 @@ import {useDispatch} from 'react-redux';
 import {loginHook} from './hook';
 import {authAction} from '../../redux/action/authAction';
 import {colors, normalize, normalizeHorizontal} from '../../helper';
-import {IC_BACK, IC_APPLE, IC_GOOGLE} from '../../assets';
+import {IC_BACK, IC_APPLE, IC_GOOGLE, IC_SHOWPASS} from '../../assets';
 import {Tip} from '../../component';
 
 const Item = [
@@ -40,10 +40,14 @@ const renderItem = ({item, index}) => {
 export const Login = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-
   const [isLoading, setIsLoading] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isShowPassWord, setIsShowPassword] = useState(false)
+
+  const showPassword = () => {
+    setIsShowPassword(!isShowPassWord)
+  }
 
   const onLogin = async () => {
     setIsLoading(true);
@@ -79,13 +83,28 @@ export const Login = () => {
         value={username}
         onChangeText={setUsername}
         style={styles.tipUsername}
+        placeholderTextColor="#666"
+        placeholder="Please enter email"
       />
       <Text style={styles.txtTitle}>{'Password'}</Text>
-      <TextInput
-        value={password}
-        onChangeText={setPassword}
-        style={styles.tipPassword}
-      />
+      <View style = {styles.password}>
+        <TextInput
+          value={password}
+          onChangeText={setPassword}
+          style={styles.tipPassword}
+          placeholderTextColor="#666"
+          placeholder="Please enter password"
+          secureTextEntry = {isShowPassWord}
+        />
+        <TouchableOpacity onPress={showPassword}  style={styles.btnShowPass}>
+          <Image
+            source={IC_SHOWPASS}
+            style={styles.icShowPassword}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
+      </View>
+
       <TouchableOpacity onPress={onLogin} style={styles.btnStart}>
         <LinearGradient
           start={{x: 0.0, y: 0.25}}
@@ -204,11 +223,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     marginTop: normalize(16),
-    borderRadius: normalize(12),
+    borderRadius: 12,
     paddingLeft: normalizeHorizontal(20),
     color: colors.TEXT,
   },
-  tipPassword:{
+  password:{
+    justifyContent:'center',
+
+  },
+  tipPassword: {
     width: '90%',
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     justifyContent: 'center',
@@ -217,5 +240,15 @@ const styles = StyleSheet.create({
     borderRadius: normalize(12),
     paddingLeft: normalizeHorizontal(20),
     color: colors.TEXT,
-  }
+  },
+  icShowPassword: {
+    height: normalize(20),
+    aspectRatio: 1,
+    marginTop: normalize(16),
+  },
+  btnShowPass: {
+    position: 'absolute',
+    right: 0,
+    marginRight: normalizeHorizontal(50)
+  },
 });

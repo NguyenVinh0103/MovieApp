@@ -7,6 +7,8 @@ export const IC_SEARCH = require('./icons/search.png');
 export const IC_MICRO = require('./icons/micro.png');
 export const IC_PLUS = require('./icons/plus.png');
 export const IC_NEXT = require('./icons/icNext.png');
+export const IC_SHOWPASS = require('./icons/icShowPass.png');
+
 
 //---------------------IMAGES-------------///
 

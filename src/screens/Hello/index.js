@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     height: normalize(50),
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: normalize(12),
+    borderRadius: 12,
   },
   btnStart: {
     width: '90%',

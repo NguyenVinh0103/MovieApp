@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     width: '90%',
     backgroundColor: '#1A1A1A',
     alignSelf: 'center',
-    borderRadius: normalize(22),
+    borderRadius: 22,
     paddingLeft: normalizeHorizontal(60),
     color: '#fff',
   },

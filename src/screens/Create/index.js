@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     marginTop: normalize(40),
     marginLeft: normalizeHorizontal(10),
     marginRight: normalize(10),
-    borderRadius: normalize(12),
+    borderRadius: 12,
   },
   icFlatList: {
     height: normalize(20),
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     height: normalize(50),
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: normalize(12),
+    borderRadius: 12,
   },
   btnStart: {
     width: '90%',
