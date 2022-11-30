@@ -25,7 +25,7 @@ export default Paginator = ({data, scrollX}) => {
         const opacity = scrollX.interpolate({
           inputRange,
           outputRange: [0.3, 1, 0.3],
-          extrapolate: 'clamp'
+          extrapolate: 'clamp',
         });
 
         return (
