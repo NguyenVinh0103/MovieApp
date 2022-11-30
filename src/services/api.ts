@@ -1,27 +1,26 @@
-import rootStore from '../redux/reduxUtil/store';
 import Axios from 'axios';
+import { Store } from '../redux';
 import { ApiMonitorFail, ApiMonitorSuccess } from './Monitor';
 
-export const API_END_POINT = 'https://manga-reader-android.readingnovelfull.com';
+export const API_END_POINT = 'https://reqres.in/';
 export const api = Axios.create({
     baseURL: API_END_POINT,
     timeout: 100000,
     headers: {
         'Content-Type': 'application/json',
-        'Accept': 'Application/json',
+        Accept: 'Application/json',
     },
 });
 
 api.interceptors.request.use(
     (config: any) => {
         // Do something before request is sent
-        const token = rootStore.getState().auth?.accessToken || '';
+        const token = Store.getState().auth?.accessToken || '';
         config.headers['Authorization'] = token ? `Bearer ${token}` : '';
         return config;
     },
     error => {
         console.log(error);
-        return error;
     },
 );
 api.interceptors.response.use(

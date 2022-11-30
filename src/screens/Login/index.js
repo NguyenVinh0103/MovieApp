@@ -5,6 +5,7 @@ import {
   FlatList,
   Image,
   TouchableOpacity,
+  TextInput
 } from 'react-native';
 import React, {useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
@@ -12,7 +13,7 @@ import {useNavigation} from '@react-navigation/native';
 
 import {useDispatch} from 'react-redux';
 import {loginHook} from './hook';
-import {authAction} from '../../redux/auth';
+import {authAction} from '../../redux/action/authAction';
 import {colors, normalize, normalizeHorizontal} from '../../helper';
 import {IC_BACK, IC_APPLE, IC_GOOGLE} from '../../assets';
 import {Tip} from '../../component';
@@ -207,4 +208,14 @@ const styles = StyleSheet.create({
     paddingLeft: normalizeHorizontal(20),
     color: colors.TEXT,
   },
+  tipPassword:{
+    width: '90%',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginTop: normalize(16),
+    borderRadius: normalize(12),
+    paddingLeft: normalizeHorizontal(20),
+    color: colors.TEXT,
+  }
 });

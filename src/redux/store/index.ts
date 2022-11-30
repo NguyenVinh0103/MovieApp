@@ -1,14 +1,14 @@
 import { createStore, applyMiddleware } from 'redux'
 import { createLogger } from 'redux-logger'
+import combinedReducer from '../reducer'
 import createSagaMiddleware from 'redux-saga'
-import combinedReducer from '../rootReducers'
-import rootSaga from '../rootSagas'
+import rootSaga from '../saga'
 import reactotron from './reactotronConfig'
 
 const sagaMonitor = reactotron.createSagaMonitor()
 
 const sagaMiddleware = createSagaMiddleware({ sagaMonitor })
-const logger:any = createLogger({
+const logger = createLogger({
     predicate: () => process.env.NODE_ENV !== 'production',
 })
 
