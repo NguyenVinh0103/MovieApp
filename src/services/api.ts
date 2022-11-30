@@ -1,14 +1,14 @@
-import rootStore from '@/reduxUtil/store';
+import rootStore from '../redux/reduxUtil/store';
 import Axios from 'axios';
 import { ApiMonitorFail, ApiMonitorSuccess } from './Monitor';
 
-export const API_END_POINT = 'https://reqres.in/';
+export const API_END_POINT = 'https://manga-reader-android.readingnovelfull.com';
 export const api = Axios.create({
     baseURL: API_END_POINT,
     timeout: 100000,
     headers: {
         'Content-Type': 'application/json',
-        Accept: 'Application/json',
+        'Accept': 'Application/json',
     },
 });
 
@@ -21,6 +21,7 @@ api.interceptors.request.use(
     },
     error => {
         console.log(error);
+        return error;
     },
 );
 api.interceptors.response.use(

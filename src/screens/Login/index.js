@@ -6,13 +6,16 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
+import LinearGradient from 'react-native-linear-gradient';
+import {useNavigation} from '@react-navigation/native';
+
+import {useDispatch} from 'react-redux';
+import {loginHook} from './hook';
+import {authAction} from '../../redux/auth';
 import {colors, normalize, normalizeHorizontal} from '../../helper';
 import {IC_BACK, IC_APPLE, IC_GOOGLE} from '../../assets';
 import {Tip} from '../../component';
-
-import LinearGradient from 'react-native-linear-gradient';
-import {useNavigation} from '@react-navigation/native';
 
 const Item = [
   {
@@ -35,6 +38,24 @@ const renderItem = ({item, index}) => {
 
 export const Login = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const onLogin = async () => {
+    setIsLoading(true);
+    const params = {
+      username: 'vinh17528@gmail.com',
+      password: '12345678',
+    };
+    const response = await authAction.onLogin(params, dispatch);
+    setTimeout(() => {
+      navigation.navigate('Home');
+    }, 600);
+    setIsLoading(false);
+  };
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -52,13 +73,19 @@ export const Login = () => {
           contentContainerStyle={styles.flatList}
         />
       </View>
-      <Text style={styles.txtTitle}>{'Email'}</Text>
-      <Tip />
+      <Text style={styles.txtTitle}>{'User Name'}</Text>
+      <TextInput
+        value={username}
+        onChangeText={setUsername}
+        style={styles.tipUsername}
+      />
       <Text style={styles.txtTitle}>{'Password'}</Text>
-      <Tip placeHolder="enter your password" />
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Interesting')}
-        style={styles.btnStart}>
+      <TextInput
+        value={password}
+        onChangeText={setPassword}
+        style={styles.tipPassword}
+      />
+      <TouchableOpacity onPress={onLogin} style={styles.btnStart}>
         <LinearGradient
           start={{x: 0.0, y: 0.25}}
           end={{x: 0.5, y: 1.0}}
@@ -168,6 +195,16 @@ const styles = StyleSheet.create({
     lineHeight: normalize(22),
   },
   txtLogin: {
+    color: colors.TEXT,
+  },
+  tipUsername: {
+    width: '90%',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginTop: normalize(16),
+    borderRadius: normalize(12),
+    paddingLeft: normalizeHorizontal(20),
     color: colors.TEXT,
   },
 });
