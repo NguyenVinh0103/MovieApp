@@ -34,12 +34,22 @@ const Item = [
     image: IMG_PRODUCT2,
     name: 'The marksman',
   },
+  {
+    id: 3,
+    image: IMG_PRODUCT1,
+    name: 'Squid game',
+  },
+  {
+    id: 4,
+    image: IMG_PRODUCT1,
+    name: 'Squid game',
+  },
 ];
 
 const Item2 = [
   {
     id: 1,
-    image2: IMG_NEW1,
+    image2: IMG_NEW2,
     name2: 'Black widow',
   },
   {
@@ -49,7 +59,7 @@ const Item2 = [
   },
   {
     id: 3,
-    image2: IMG_NEW3,
+    image2: IMG_NEW2,
     name2: 'The misfits',
   },
 ];
@@ -85,7 +95,7 @@ export const Home = () => {
 
   const navigation = useNavigation();
   return (
-    <KeyboardAwareScrollView
+    <ScrollView
       enableAutomaticScroll={true}
       contentContainerStyle={styles.scrollView}>
       <View style={styles.container}>
@@ -93,7 +103,7 @@ export const Home = () => {
           <TextInput
             style={styles.tipSearch}
             placeholder="Search in the app"
-            onChangeText={text => setSearch(text)}
+            onChangeText={setSearch}
             placeholderTextColor="#fff"
           />
           <View style={styles.icTIP}>
@@ -124,6 +134,7 @@ export const Home = () => {
             )}
             contentContainerStyle={styles.FlatList}
             keyExtractor={(item, index) => `${item?.id} ${item?.index}`}
+            horizontal 
             renderItem={renderItem}
           />
         </View>
@@ -136,10 +147,11 @@ export const Home = () => {
             contentContainerStyle={styles.FlatList2}
             keyExtractor={(item, index) => `${item?.id} ${item?.index}`}
             renderItem={renderItem2}
+            horizontal
           />
         </View>
       </View>
-    </KeyboardAwareScrollView>
+    </ScrollView>
   );
 };
 

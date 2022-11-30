@@ -22,7 +22,7 @@ export function* doLogin(action: LoginSagaTypes): any {
     const { params, resolve } = action; //// Mỗi hàm đều có 4 giá trị cố định này .
     try {
         yield delay(300)
-        const response = yield api.post('https://reqres.in/api/login', params); /// gọi api và truyền body data
+        const response = yield api.post('/api/login', params); /// gọi api và truyền body data
         const code = response?.status;
         let token = ""
         if (code == API_CODE.OK) {

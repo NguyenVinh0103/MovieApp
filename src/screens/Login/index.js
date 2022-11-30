@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
+  ActivityIndicator,
 } from 'react-native';
 import React, {useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
@@ -13,11 +14,10 @@ import {useNavigation} from '@react-navigation/native';
 
 import {useDispatch} from 'react-redux';
 import {loginHook} from './hook';
-import {authAction} from '../../redux/action/authAction';
 import {colors, normalize, normalizeHorizontal} from '../../helper';
 import {IC_BACK, IC_APPLE, IC_GOOGLE, IC_SHOWPASS} from '../../assets';
 import {Tip} from '../../component';
-
+import { authAction } from '../../redux/action';
 const Item = [
   {
     id: 1,
@@ -41,8 +41,8 @@ export const Login = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('eve.holt@reqres.in');
+  const [password, setPassword] = useState('cityslicka');
   const [isShowPassWord, setIsShowPassword] = useState(false)
 
   const showPassword = () => {
@@ -50,7 +50,7 @@ export const Login = () => {
   }
 
   const onLogin = async () => {
-		setIsLoading(dispatch, true);
+		setIsLoading(true);
 		const params = {
 			username: username,
 			password: password,
@@ -61,7 +61,7 @@ export const Login = () => {
 			navigation.navigate('Home')
       console.log('login success')
 		}
-		setIsLoading(dispatch, false);
+		setIsLoading(false);
 	}
   return (
     <View style={styles.container}>
@@ -113,7 +113,7 @@ export const Login = () => {
           end={{x: 0.5, y: 1.0}}
           colors={['rgba(255, 114, 42, 0.5)', 'rgba(255, 114, 42, 1)']}
           style={styles.linearGradient}>
-          <Text style={styles.txtSignIn}>{'Login'}</Text>
+          {isLoading ? <ActivityIndicator /> : <Text style={styles.txtSignIn}>{'Login'}</Text>}
         </LinearGradient>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('Create')}>
